@@ -1,3 +1,4 @@
+import FashionCategories from "@/components/FashionCategories";
 import Image from "next/image";
 
 export default function Home() {
@@ -24,7 +25,6 @@ export default function Home() {
             Shop Now
           </button>
         </div>
-
         <div className="hidden md:block">
           <Image
             src="/hero-img.png"
@@ -35,6 +35,7 @@ export default function Home() {
           />
         </div>
       </div>
+      <FashionCategories />
     </div>
   );
 }
