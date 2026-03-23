@@ -1,10 +1,11 @@
 import FashionCategories from "@/components/FashionCategories";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="p-4">
-      <div className="bg-(--hero-color) w-full min-h-[10vh] rounded-2xl px-10 py-12 flex items-center justify-between">
+    <div className="pt-3">
+      <div className="bg-(--hero-color) w-full min-h-[10vh] rounded-xl px-10 py-12 flex items-center justify-between">
         <div className="max-w-xl space-y-6 text-white">
           <div className="flex items-center gap-3">
             <span className="text-sm font-medium">Exclusive offer</span>
@@ -21,9 +22,9 @@ export default function Home() {
           <p className="text-white/80 text-lg">
             Premium products — everything you need at your doorstep.
           </p>
-          <button className="flex items-center gap-2 bg-(--primary-color) text-white px-6 py-3 rounded-full font-medium hover:scale-105 transition">
+          <Button className="flex items-center gap-2 bg-(--primary-color) text-white px-6 py-3 rounded-full font-medium hover:scale-105 transition">
             Shop Now
-          </button>
+          </Button>
         </div>
         <div className="hidden md:block">
           <Image
