@@ -1,15 +1,13 @@
 import Link from "next/link";
 import Searchbar from "./Searchbar";
 import { ShoppingCart } from "lucide-react";
-import Explorecat from "./ui/explorecat";
 
 export default function Navbar() {
   return (
     <div className="flex items-center justify-between sticky top-0 z-50 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/90 border-b border-gray-200 py-3 px-6 shadow-sm">
-      <Explorecat />
-      {/* <Link href="/">
+      <Link href="/">
         <h1 className="text-md font-medium tracking-wider">Bazaro</h1>
-      </Link> */}
+      </Link>
       <div className="flex items-center">
         <Searchbar />
       </div>

@@ -4,7 +4,12 @@ import { ProductList } from "@/components/Productlist";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-export default function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ category: string }>;
+}) {
+  const { category } = await searchParams;
   return (
     <div className="pt-3">
       <div className="bg-(--hero-color) w-full min-h-[10vh] rounded-xl px-10 py-12 flex items-center justify-between">
@@ -39,7 +44,7 @@ export default function Home() {
         </div>
       </div>
       <FashionCategories />
-      <ProductList />
+      <ProductList category={category} />
     </div>
   );
 }

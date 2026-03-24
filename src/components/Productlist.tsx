@@ -114,16 +114,74 @@ const products: ProductsType[] = [
   },
 ];
 
-export const ProductList = () => {
+interface ProductListProps {
+  category?: string;
+  minPrice?: string;
+  maxPrice?: string;
+  size?: string;
+  color?: string;
+  showViewAll?: boolean;
+  isFullWidth?: boolean;
+}
+
+export const ProductList = ({
+  category,
+  minPrice,
+  maxPrice,
+  size,
+  color,
+  showViewAll = true,
+  isFullWidth = true,
+}: ProductListProps) => {
+  const filteredProducts = products.filter((p) => {
+    // category filter below
+    if (category && category !== "all") {
+      if (!p.name.toLowerCase().includes(category.replace("-", " ")))
+        return false;
+    }
+    if (minPrice && p.price < parseFloat(minPrice)) return false;
+    if (maxPrice && p.price > parseFloat(maxPrice)) return false;
+
+    if (size && !p.sizes.includes(size.toLowerCase())) return false;
+    if (color && !p.colors.includes(color)) return false;
+
+    return true;
+  });
+
   return (
     <div className="w-full">
-      <h1 className="text-2xl font-bold tracking-wider">Today's Best Deals</h1>
-      <p className="text-sm">up to 77% discount for limited time 🔆</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12 mt-6">
-        {products.map((product) => (
+      {showViewAll && (
+        <>
+          <h1 className="text-2xl font-bold tracking-wider">
+            Today's Best Deals
+          </h1>
+          <p className="text-sm">up to 77% discount for limited time 🔆</p>
+        </>
+      )}
+      <div
+        className={`grid grid-cols-1 sm:grid-cols-2 ${
+          isFullWidth
+            ? "xl:grid-cols-3 2xl:grid-cols-4"
+            : "xl:grid-cols-2 2xl:grid-cols-3"
+        } gap-8 mt-6`}
+      >
+        {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
+      {filteredProducts.length === 0 && (
+        <div className="py-20 text-center text-gray-400">
+          No products found matching your filters.
+        </div>
+      )}
+      {showViewAll && (
+        <Link
+          href={category ? `/products?category=${category}` : "/products"}
+          className="flex justify-end mt-4 underline text-sm text-gray-500 hover:text-(--primary-color) transition-colors"
+        >
+          View All Products
+        </Link>
+      )}
     </div>
   );
 };
