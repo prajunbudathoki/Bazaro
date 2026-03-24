@@ -1,4 +1,6 @@
 import FashionCategories from "@/components/FashionCategories";
+import ProductCard from "@/components/ProductCard";
+import { ProductList } from "@/components/Productlist";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
@@ -37,6 +39,7 @@ export default function Home() {
         </div>
       </div>
       <FashionCategories />
+      <ProductList />
     </div>
   );
 }

@@ -1,5 +1,8 @@
 "use client";
 
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -29,6 +32,19 @@ const categories = [
 ];
 
 const Explorecat = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const handleCategoryClick = useCallback(
+    (categoryName: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      const slug = categoryName.toLowerCase().replace(/\s+/g, "-");
+      params.set("category", slug);
+      router.push(`?${params.toString()}`);
+    },
+    [router, searchParams],
+  );
+
   return (
     <div className="flex items-center justify-center">
       <DropdownMenu>
@@ -47,6 +63,7 @@ const Explorecat = () => {
           {categories.map((cat) => (
             <DropdownMenuItem
               key={cat.name}
+              onClick={() => handleCategoryClick(cat.name)}
               className="flex items-center gap-3 p-3 cursor-pointer rounded-lg transition-colors hover:bg-gray-50 focus:bg-gray-50 group"
             >
               <div className="p-2 bg-gray-50 rounded-lg group-hover:bg-white transition-colors">

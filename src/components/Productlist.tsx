@@ -117,10 +117,8 @@ const products: ProductsType[] = [
 export const ProductList = () => {
   return (
     <div className="w-full">
-      <h1 className="text-2xl font-bold">Today's Best Deals</h1>
-      <p className="text-sm text-(--text-color)">
-        up to 77% discount for limited time 🔆
-      </p>
+      <h1 className="text-2xl font-bold tracking-wider">Today's Best Deals</h1>
+      <p className="text-sm">up to 77% discount for limited time 🔆</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12 mt-6">
         {products.map((product) => (
           <Link href={`/product/${product.id}`} key={product.id}>

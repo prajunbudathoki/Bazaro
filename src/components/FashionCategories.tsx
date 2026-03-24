@@ -1,3 +1,7 @@
+"use client";
+
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback } from "react";
 import {
   Shirt,
   Footprints,
@@ -8,6 +12,19 @@ import {
 } from "lucide-react";
 
 export default function FashionCategories() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const handleCategoryClick = useCallback(
+    (categoryName: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      const slug = categoryName.toLowerCase().replace(/\s+/g, "-");
+      params.set("category", slug);
+      router.push(`?${params.toString()}`);
+    },
+    [router, searchParams],
+  );
+
   const categories = [
     { name: "Men Wear", icon: Shirt },
     { name: "Footwear", icon: Footprints },
@@ -26,6 +43,7 @@ export default function FashionCategories() {
             <div
               key={idx}
               className="flex flex-col items-center gap-3 cursor-pointer"
+              onClick={() => handleCategoryClick(cat.name)}
             >
               <div className="p-4 rounded-full border border-gray-300">
                 <Icon className="w-8 h-8 text-gray-600" />
