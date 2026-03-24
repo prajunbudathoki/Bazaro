@@ -121,9 +121,7 @@ export const ProductList = () => {
       <p className="text-sm">up to 77% discount for limited time 🔆</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12 mt-6">
         {products.map((product) => (
-          <Link href={`/product/${product.id}`} key={product.id}>
-            <ProductCard key={product.id} product={product} />
-          </Link>
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </div>
