@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Searchbar from "./Searchbar";
 import { ShoppingCart } from "lucide-react";
+import CartSheet from "./layout/cart-sheet";
 
 export default function Navbar() {
   return (
@@ -12,8 +13,7 @@ export default function Navbar() {
         <Searchbar />
       </div>
       {/* cart icon */}
-      <div className="flex items-center gap-2">
-        {/* yellow cricle cart icon */}
+      {/* <div className="flex items-center gap-2">
         <div className="bg-yellow-400 p-3 rounded-full flex items-center justify-center">
           <ShoppingCart className="w-5 h-5 text-black" />
         </div>
@@ -21,7 +21,8 @@ export default function Navbar() {
           <p className="text-sm font-light">Cart</p>
           <p className="text-sm text-gray-500">0 - $0.00</p>
         </div>
-      </div>
+      </div> */}
+      <CartSheet />
     </div>
   );
 }

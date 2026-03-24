@@ -1,8 +1,8 @@
 "use client";
 
+import { X } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useState, useEffect } from "react";
-import { ChevronDown, X } from "lucide-react";
+import { useCallback, useState } from "react";
 
 const categories = [
   "All",
@@ -173,5 +173,4 @@ const Filters = () => {
     </div>
   );
 };
-
 export default Filters;

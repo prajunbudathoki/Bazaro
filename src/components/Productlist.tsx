@@ -1,6 +1,7 @@
 import { ProductsType } from "@/types";
 import Link from "next/link";
 import ProductCard from "./ProductCard";
+import { Button } from "./ui/button";
 
 // test data
 const products: ProductsType[] = [
@@ -151,12 +152,18 @@ export const ProductList = ({
   return (
     <div className="w-full">
       {showViewAll && (
-        <>
+        <div className="flex flex-col gap-2">
           <h1 className="text-2xl font-bold tracking-wider">
             Today's Best Deals
           </h1>
           <p className="text-sm">up to 77% discount for limited time 🔆</p>
-        </>
+          <Link
+            href={category ? `/products?category=${category}` : "/products"}
+            className="flex justify-end mt-4 underline text-sm text-gray-500 hover:text-(--primary-color) transition-colors"
+          >
+            View All Products
+          </Link>
+        </div>
       )}
       <div
         className={`grid grid-cols-1 sm:grid-cols-2 ${
@@ -173,14 +180,6 @@ export const ProductList = ({
         <div className="py-20 text-center text-gray-400">
           No products found matching your filters.
         </div>
-      )}
-      {showViewAll && (
-        <Link
-          href={category ? `/products?category=${category}` : "/products"}
-          className="flex justify-end mt-4 underline text-sm text-gray-500 hover:text-(--primary-color) transition-colors"
-        >
-          View All Products
-        </Link>
       )}
     </div>
   );
