@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Searchbar from "./Searchbar";
 import { ShoppingCart } from "lucide-react";
-import CartSheet from "./layout/cart-sheet";
+import CartSheet from "./ui/cart-sheet";
 
 export default function Navbar() {
   return (

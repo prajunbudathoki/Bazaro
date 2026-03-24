@@ -7,10 +7,11 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../ui/sheet";
+} from "./sheet";
 import { useState } from "react";
 import Image from "next/image";
-import { Button } from "../ui/button";
+import { Button } from "./button";
+import Link from "next/link";
 
 const INITIAL_ITEMS = [
   {
@@ -167,13 +168,14 @@ export default function CartSheet() {
               <span>${subtotal.toFixed(2)}</span>
             </div>
             <div className="flex gap-3">
-              <Button
-                variant="outline"
-                className="flex-1 rounded-xl py-6 text-sm"
-              >
-                View Cart
-              </Button>
-
+              <Link href="/cart">
+                <Button
+                  variant="outline"
+                  className="flex-1 rounded-xl py-6 text-sm"
+                >
+                  View Cart
+                </Button>
+              </Link>
               <Button className="flex-1 rounded-xl py-6 text-sm bg-(--hero-color)">
                 Proceed to Checkout
               </Button>
