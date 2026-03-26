@@ -1,6 +1,10 @@
 "use client";
 
+import PaymentForm from "@/components/payment-form";
+import ShippingForm from "@/components/shipping-form";
 import { Button } from "@/components/ui/button";
+import { Trash, Trash2 } from "lucide-react";
+import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 
 const steps = [
@@ -77,7 +81,42 @@ const CartPage = () => {
       {/* cart procedure details */}
       <div className="w-full flex flex-col lg:flex-row gap-16">
         <div className="w-full lg:w-7/12 shadow-lg border border-gray-100 p-8 rounded-lg flex flex-col gap-8">
-          1
+          {activeStep === 1 ? (
+            INITIAL_ITEMS.map((item) => (
+              <div className="flex items-center justify-between" key={item.id}>
+                {/* image and details */}
+                <div className="flex gap-8">
+                  <div className="relative w-32 h-32 flex items-center justify-center bg-gray-50 rounded-lg">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      width={100}
+                      height={100}
+                      className="object-cover"
+                    />
+                  </div>
+                  {/* details */}
+                  <div className="flex border-b border-gray-200 flex-col gap-2">
+                    <h3 className="text-lg font-medium">{item.name}</h3>
+                    <p className="text-sm text-gray-500">
+                      Quantity: {item.quantity}
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      Size: {item.size}, Color: {item.color}
+                    </p>
+                    <p className="text-sm font-medium">${item.price}</p>
+                  </div>
+                </div>
+                <Button className="w-8 h-8 rounded-full  bg-red-100 text-red-500 flex items-center justify-center cursor-pointer">
+                  <Trash2 className="w-4 h-4" />
+                </Button>
+              </div>
+            ))
+          ) : activeStep === 2 ? (
+            <ShippingForm />
+          ) : activeStep === 3 ? (
+            <PaymentForm />
+          ) : null}
         </div>
         <div className="w-full lg:w-5/12 shadow-lg border border-gray-100 p-8 rounded-lg flex flex-col gap-8">
           <h2>Cart details</h2>
@@ -111,12 +150,14 @@ const CartPage = () => {
               </p>
             </div>
           </div>
-          <Button
-            onClick={() => router.push("/cart?step=2")}
-            className="w-full bg-(--primary-color) text-white"
-          >
-            Continue ▶
-          </Button>
+          {activeStep === 1 && (
+            <Button
+              onClick={() => router.push("/cart?step=2", { scroll: false })}
+              className="w-full bg-(--primary-color) text-white"
+            >
+              Continue ▶
+            </Button>
+          )}
         </div>
       </div>
     </div>
