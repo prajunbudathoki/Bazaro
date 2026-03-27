@@ -17,7 +17,7 @@ export default function ShippingForm({
     resolver: zodResolver(shippingFormSchema as any),
   });
   const handleShippingForm: SubmitHandler<ShippingFormInputs> = (data) => {
-    setShippingForm(false);
+    setShippingForm(data);
     router.push("/cart?step=3", { scroll: false });
   };
   return (
