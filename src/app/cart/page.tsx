@@ -3,9 +3,11 @@
 import PaymentForm from "@/components/payment-form";
 import ShippingForm from "@/components/shipping-form";
 import { Button } from "@/components/ui/button";
+import { ShippingFormInputs } from "@/types";
 import { Trash, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
+import { useState } from "react";
 
 const steps = [
   {
@@ -47,9 +49,12 @@ const INITIAL_ITEMS = [
 ];
 
 const CartPage = () => {
+  
+  const [shippingForm, setShippingForm] = useState<ShippingFormInputs>();
   const searchParams = useSearchParams();
   const router = useRouter();
   const activeStep = parseInt(searchParams.get("step") || "1");
+
   return (
     <div className="flex flex-col gap-8 items-center justify-center mt-14">
       <h1 className="text-2xl font-medium">Your shopping Cart</h1>
@@ -113,7 +118,7 @@ const CartPage = () => {
               </div>
             ))
           ) : activeStep === 2 ? (
-            <ShippingForm />
+            <ShippingForm setShippingForm={setShippingForm} />
           ) : activeStep === 3 ? (
             <PaymentForm />
           ) : null}

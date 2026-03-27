@@ -1,12 +1,14 @@
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { ShippingFormInputs, shippingFormSchema } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 
 export default function ShippingForm({
   setShippingForm,
 }: {
-  setShippingForm: (value: boolean) => void;
+  setShippingForm: (data: ShippingFormInputs) => void;
 }) {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -14,8 +16,15 @@ export default function ShippingForm({
   } = useForm<ShippingFormInputs>({
     resolver: zodResolver(shippingFormSchema as any),
   });
+  const handleShippingForm: SubmitHandler<ShippingFormInputs> = (data) => {
+    setShippingForm(false);
+    router.push("/cart?step=3", { scroll: false });
+  };
   return (
-    <form className="flex flex-col gap-4">
+    <form
+      className="flex flex-col gap-4"
+      onSubmit={handleSubmit(handleShippingForm)}
+    >
       <div className="grid grid-cols-2 gap-4">
         <div className="flex flex-col gap-2">
           <label htmlFor="name" className="text-sm font-medium">
