@@ -2,7 +2,11 @@ import { useForm } from "react-hook-form";
 import { ShippingFormInputs, shippingFormSchema } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-export default function ShippingForm({setShippingForm}: {}) {
+export default function ShippingForm({
+  setShippingForm,
+}: {
+  setShippingForm: (value: boolean) => void;
+}) {
   const {
     register,
     handleSubmit,
